@@ -96,7 +96,7 @@ Ask the model to reason about a problem in steps (muti-step reasoning), and then
    Response to user: {delimiter} <response to user>
    Make sure to include {delimiter} to separate every step.
    """
-
+   ```
    ```python
    system_message = f"""
    Follow these steps to answer the user queries. The user query will be delimited by {delimiter}.
