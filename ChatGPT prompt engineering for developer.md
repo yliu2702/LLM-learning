@@ -122,3 +122,18 @@ Ask the model to reason about a problem in steps (muti-step reasoning), and then
         final_response = "Sorry, I'm having trouble right now, please try asking another question."  
     print(final_response)
    ```
+
+### Chaining prompt
+Splitting complex task into a series of sub-tasks
+1. Compare Chaining multiple prompts vs Chain-of-thought prompting
+   1) Using one long, complicated prompts requires monitoring everything simultaneously and ensuring each stage of the task works perfectly; using chaining prompt will split the complex task into simple ones, and only be in charge of one simple task at a time, ensuring each part has the satisfying results before moving on to the next.
+   2) The difficulties of debugging chain-of-thought is the ambiguity and the complex dependency between different parts of the logic.
+   3) Chaining prompts may be over complicated for a very simple task.
+2. Advantages of chaining prompt
+   1) Maintain the state of workflow at any given point, and take different actions depending in the current state
+   2) Each subtask contains only the instruction required for a single state of the task, which makes the system easier to manage, makes sure the model has all the information it needs to carry out a task and reduce the likelihood of the error.
+   3) Chaining prompts reduce the number of tokens used in a prompt, since it skips some chains of the workflow when not needed for the task.
+   4) Chaining prompts is easier to test which step might be failing more often or need to have a human in the loop at a specific step
+   5) Easier to keep track of state external to LLM for complex tasks
+   6) Allow model to use external tools (web search, knowledge databases search)
+4. 
