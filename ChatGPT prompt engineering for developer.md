@@ -14,16 +14,14 @@
 4. LLM understand words as composition of tokens (1-4 characters); some LLM have different token limit of input 'context' +output completion, like 'gpt3.5-turbo' ~ 4000 tokens
 5. System, User, Assistant messages:
 <img width="391" alt="image" src="https://github.com/yliu2702/LLM-learning/assets/154867456/9294f0dc-09e3-4346-89b0-fc84dfa01080">
+
 ```python
-{{
 messages = [
 {'role':'system', 
- 'content':"""You are an assistant who responds\
- in the style of Dr Seuss."""},    
+ 'content':"""You are an assistant who responds in the style of Dr Seuss."""},    
 {'role':'user',
- 'content':"""write me a very short poem \ 
- about a happy carrot"""},  
-] }}
+ 'content':"""write me a very short poem about a happy carrot"""},  
+] 
 ```
 
 6. 
