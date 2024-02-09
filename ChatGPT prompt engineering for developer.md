@@ -256,4 +256,32 @@ Splitting complex task into a series of sub-tasks
  Write functions to process the assistant's response
 
  ### Check output
+ check if the output is factually based on the provided product information
+ ```python
+ system_message = f"""
+     You're a assistant that evaluates whether customer service agent's responses suffciently answer customer;s questions, and also validate that \
+      all the facts the assistant cites from the product information are correct. The product information, user's message and assistant's message \
+     will be delimited by {delimiter}. Respond witn a Y or N character, with no punctuation:
+     Y - if the output sufficiently answers the question AND the response correctly uses product information
+     N - otherwise
+     Output a single letter only.
+     """
+ q_a_pair = f"""
+          customer message: f"{delimiter}{user_message}{delimiter}"
+          product information: f"{delimiter}{product_dict}{delimiter}"
+          assistant message: f"{delimiter}{final_response}{delimiter}"
+
+          Does the response use the retrieved information correctly?
+          Does the response sufficiently answer the question
+          
+          Output Y or N
+          """
+ messages = [
+    {'role': 'system', 'content': system_message},
+    {'role': 'user', 'content': q_a_pair}
+ ]
+
+ response = get_completion_from_messages(messages, max_tokens=1)
+ print(response)
+ ```
 
