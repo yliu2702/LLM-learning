@@ -19,11 +19,29 @@ from langchain.memory import ConversationBufferMemory
 llm = ChatOpenAI(temperature=0.0, model=llm_model)
 memory = ConversationBufferMemory()
 # add elements in memory
-# memory.save_context({"input": "Hi"}, 
-                    {"output": "What's up"})
+# memory.save_context({"input": "Hi"},{"output": "What's up"})
+# save_context with variable
+# memory.save_context({"input": "What is on the schedule today?"},{"output": f"{schedule}"})
 conversation = ConversationChain(
     llm=llm, 
     memory = memory,
     verbose=False
 )
+# user query
+conversation.predict(input = "...")
+# check memory
+print(memory.buffer)
+```
+Other memory
+
+```python
+from langchain.memory import ConversationBufferWindowMemory, ConversationTokenBufferMemory, ConversationSummaryBufferMemory
+memory = ConversationBufferWindowMemory(k=1)  #only remember the last Q&A
+memory = ConversationTokenBufferMemory(llm=llm, max_token_limit=50) #only remember last 50 tokens
+memory = ConversationSummaryBufferMemory(llm=llm, max_token_limit=50)
+
+memory.load_memory_variables({}) #if memory exceed token limit/window limit, will return a empty list; or {"history",".."}
+
+
+
 ```
